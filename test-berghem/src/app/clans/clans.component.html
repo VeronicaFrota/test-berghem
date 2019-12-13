@@ -1,0 +1,73 @@
+<div class="container" *ngIf="clan">
+    <h1>Clan {{ clan.name | titlecase }}</h1>
+
+    <section class="form-information">
+        <div class="form-information-item color">
+            <span>Clan</span>
+            <mat-form-field>
+                <input matInput placeholder="Clan" readonly> {{ clan.tag }}
+            </mat-form-field>
+
+            <mat-form-field class="input-item">
+                <input matInput placeholder="Name" readonly> {{ clan.name  | titlecase}}
+            </mat-form-field>
+
+            <mat-form-field class="input-item">
+                <input matInput placeholder="Clan Points" readonly> {{ clan.clanPoints }}
+            </mat-form-field>
+
+            <mat-form-field class="input-item">
+                <input matInput placeholder="Clan Level" readonly> {{ clan.clanLevel }}
+            </mat-form-field>
+
+            <mat-form-field class="input-item">
+                <input matInput placeholder="Members" readonly> {{ clan.members }}
+            </mat-form-field>
+
+            <mat-form-field class="textarea-field">
+                <textarea matInput placeholder="Description" readonly> {{ clan.description }}</textarea>
+            </mat-form-field>
+        </div>
+    </section>
+
+    <section class="table-information">
+        <div class="filter-styles">
+            <mat-form-field class="filter-style-size">
+                <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter List">
+            </mat-form-field>
+        </div>
+        <div class="table-information-title">
+            <span>Members</span>
+        </div>
+        <table mat-table [dataSource]="dataSourceMemberList" class="mat-elevation-z8">
+            <ng-container matColumnDef="tag">
+                <th mat-header-cell *matHeaderCellDef> Tag </th>
+                <td mat-cell *matCellDef="let memberList"> {{ memberList.tag }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let memberList"> {{ memberList.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expLevel">
+                <th mat-header-cell *matHeaderCellDef> Exp Level </th>
+                <td mat-cell *matCellDef="let memberList"> {{ memberList.expLevel }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="leagueName">
+                <th mat-header-cell *matHeaderCellDef> League Name </th>
+                <td mat-cell *matCellDef="let memberList"> {{ memberList.league.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="trophies">
+                <th mat-header-cell *matHeaderCellDef> Trophies </th>
+                <td mat-cell *matCellDef="let memberList"> {{ memberList.trophies }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsMemberList"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsMemberList;"></tr>
+        </table>
+
+    </section>
+</div>

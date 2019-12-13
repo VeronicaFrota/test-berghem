@@ -1,0 +1,105 @@
+
+<div class="container" *ngIf="player">
+	<h1>Player {{ player.name | titlecase }}</h1>
+
+	<section class="form-information">
+		<div class="form-information-item color">
+			<span>Player</span>
+			<mat-form-field>
+				<input matInput placeholder="Tag" readonly> {{ player.tag }}
+			</mat-form-field>
+
+			<mat-form-field class="input-item">
+				<input matInput placeholder="Name" readonly> {{ player.name  | titlecase}}
+			</mat-form-field>
+
+			<mat-form-field>
+				<input matInput placeholder="Exp. Level" readonly> {{ player.expLevel }}
+			</mat-form-field>
+
+			<mat-form-field class="input-item">
+				<input matInput placeholder="Attack Wins" readonly> {{ player.attackWins }}
+			</mat-form-field>
+		</div>
+
+		<div class="form-information-item color">
+			<span>League</span>
+			<mat-form-field>
+				<input matInput placeholder="League" readonly> {{ player.league.name | titlecase }}
+			</mat-form-field>
+		</div>
+
+		<div class="form-information-item color">
+			<span>Clan</span>
+			<mat-form-field class="input-item">
+				<input matInput placeholder="Tag" readonly> {{ player.clan.tag }}
+			</mat-form-field>
+
+			<mat-form-field class="input-item">
+				<input matInput placeholder="Clan" readonly> {{ player.clan.name | titlecase }}
+			</mat-form-field>
+
+			<mat-form-field class="input-item">
+				<input matInput placeholder="Clan Level" readonly> {{ player.clan.clanLevel }}
+			</mat-form-field>
+		</div>
+	</section>
+
+	<section class="table-information">
+		<div class="table-information-title">
+			<span>Heroes</span>
+		</div>
+		<table mat-table [dataSource]="dataSourceHeroes" class="mat-elevation-z8">
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef> Name </th>
+				<td mat-cell *matCellDef="let heroe"> {{ heroe.name | titlecase }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="level">
+				<th mat-header-cell *matHeaderCellDef> Level </th>
+				<td mat-cell *matCellDef="let heroe"> {{ heroe.level }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="maxLevel">
+				<th mat-header-cell *matHeaderCellDef> Max Level </th>
+				<td mat-cell *matCellDef="let heroe"> {{ heroe.maxLevel }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="village">
+				<th mat-header-cell *matHeaderCellDef> Village </th>
+				<td mat-cell *matCellDef="let heroe"> {{ heroe.village | titlecase }} </td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumnsHeroes"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumnsHeroes;"></tr>
+		</table>
+
+		<div class="table-information-title">
+			<span>Troops</span>
+		</div>
+		<table mat-table [dataSource]="dataSourceTroops" class="mat-elevation-z8">
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef> Name </th>
+				<td mat-cell *matCellDef="let troop"> {{ troop.name }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="level">
+				<th mat-header-cell *matHeaderCellDef> Level </th>
+				<td mat-cell *matCellDef="let troop"> {{ troop.level }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="maxLevel">
+				<th mat-header-cell *matHeaderCellDef> Max Level </th>
+				<td mat-cell *matCellDef="let troop"> {{ troop.maxLevel  }} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="village">
+				<th mat-header-cell *matHeaderCellDef> Village </th>
+				<td mat-cell *matCellDef="let troop"> {{ troop.village  }} </td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumnsTroops"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumnsTroops;"></tr>
+		</table>
+	</section>
+</div>
